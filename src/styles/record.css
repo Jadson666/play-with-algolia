@@ -1,0 +1,38 @@
+.record {
+  position: relative;
+  padding: 6px 15px 27px 15px;
+  border-bottom: 1px solid #9e9d9d6e;
+}
+
+.record button {
+  position: absolute;
+  right: 20px;
+  top: calc(50% - 10px);
+}
+
+.record > p {
+  font-size: 22px;
+  font-weight: 500;
+  color: #7d6b6b;
+}
+
+.record button.unsave, .record button.save {
+  padding: 5px 8px;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 4px
+}
+
+.record button:disabled {
+  padding: 5px 8px;
+  border: 0;
+  color: white;
+  background-color: gray;
+}
+
+.record .tag {
+  background-color: #b7b5b566;
+  padding: 2px 10px;
+  border-radius: 2px;
+  margin: 10px;
+}

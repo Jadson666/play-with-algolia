@@ -1,0 +1,28 @@
+.NavBar {
+  height: 74px;
+  position: relative;
+  background-color: #dcdcdc;
+}
+
+.NavBar > div {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+}
+
+.NavBar > div > div {
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px 5px 0 0;
+}
+
+.NavBar div.nonActive {
+  background-color: #dcdcdc;
+  color: #000000;
+}
+
+.NavBar div.active {
+  color: #929292
+}
+

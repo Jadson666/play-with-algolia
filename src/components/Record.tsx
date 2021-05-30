@@ -1,5 +1,6 @@
 import { useAtom } from 'jotai'
 import React, { useCallback, useMemo, useState } from 'react'
+import { favoriteAddOne, favoriteDelete } from '../stores/events/favorite'
 import { favoriteAtom } from '../stores/favoriteStore'
 
 export const Record = ({ data }) => {
@@ -7,25 +8,17 @@ export const Record = ({ data }) => {
   const [hover, setHover] = useState(false)
   const { id, title, author_name, categories } = data
 
-  const handleSave = useCallback(
-    (e) => setFavorite((state) => ({ ...state, saved: [...state.saved, id] })),
+  const handleSave = useCallback((e) => setFavorite(favoriteAddOne(id)), [id])
+  const removeFavorite = useCallback(
+    (e) => setFavorite(favoriteDelete(id)),
     [id]
   )
-  const handleUnSave = useCallback(
-    (e) =>
-      setFavorite((state) => ({
-        ...state,
-        saved: state.saved.filter((v) => v !== id),
-        data: state.data.filter((v) => v.id !== id)
-      })),
-    [id]
-  )
-  const handleHover = useCallback(() => setHover(true), [])
-  const handleUnHover = useCallback(() => setHover(false), [])
-  const isSaved = saved.find((v) => v === id)
+  const handleHover = () => setHover(true)
+  const handleUnHover = () => setHover(false)
+  const isSaved = saved.has(id)
 
   const button = useMemo(
-    () => getButton(hover, isSaved, handleSave, handleUnSave),
+    () => getButton(hover, isSaved, handleSave, removeFavorite),
     [id, hover, isSaved]
   )
   return (

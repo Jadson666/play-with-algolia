@@ -12,7 +12,6 @@ export interface SearchStore {
 
 const initialState = {
   data: [],
-  saved: [],
   isLoading: false
 }
 

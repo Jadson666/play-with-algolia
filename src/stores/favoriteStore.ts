@@ -1,7 +1,10 @@
 import { atom } from 'jotai'
 
+/**
+ * I know it's weird I use Set here, but it just delicious since it has O(1) in deleting and adding (which is all the operations in this project)
+ */
 export interface FavoriteStore {
-  saved: string[]
+  saved: Set<string>
   data: {
     id: number
     title: string
@@ -12,7 +15,7 @@ export interface FavoriteStore {
 }
 
 const initialState = {
-  saved: [],
+  saved: new Set<string>(),
   data: [],
   isLoading: false
 }

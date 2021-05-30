@@ -1,21 +1,23 @@
 import { useAtom } from 'jotai'
 import React from 'react'
-import { DebouncedInput } from '../../components/Input'
+import { DebouncedInput } from '../../components/DebouncedInput'
 import { Layout } from '../../components/layouts/Layout'
-import { SearchResults } from '../../components/SearchResults'
+import { ResultBoard } from '../../components/ResultBoard'
+import { Loading } from '../../components/widgets/Loading'
+import { NoResult } from '../../components/widgets/NoResult'
+import { dataTo, loadingToTrue } from '../../stores/events/search'
 import { searchAtom } from '../../stores/searchStore'
-import { apiClient } from '../apiClient'
+import { apiClient } from '../../lib/apiClient'
 
-const Search = () => {
+const SearchPage = () => {
   const [, setSearch] = useAtom(searchAtom)
+  const [{ isLoading, data }] = useAtom(searchAtom)
 
   const sendRequest = async ({ target: { value: keyword } }) => {
     if (keyword === '') return
-    setSearch((state) => ({ ...state, isLoading: true }))
+    setSearch(loadingToTrue)
     const { hits: result } = await apiClient.search(keyword)
-    setSearch((state) => {
-      return { ...state, isLoading: false, data: result as any }
-    })
+    setSearch(dataTo(result as any))
   }
 
   return (
@@ -23,14 +25,16 @@ const Search = () => {
       <div className='inputContainer'>
         <DebouncedInput onChange={sendRequest} time={800} />
       </div>
-      <SearchResults
-        loading={<div className='loading'>Loading...</div>}
-        noResult={<div className='loading'>No Result</div>}
+      <ResultBoard
+        data={data}
+        noResult={<NoResult />}
+        loadingComponent={<Loading />}
+        isLoading={isLoading}
       />
     </div>
   )
 }
 
-Search.layout = Layout
+SearchPage.layout = Layout
 
-export default Search
+export default SearchPage

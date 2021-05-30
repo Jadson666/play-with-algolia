@@ -1,11 +1,17 @@
 import Link from 'next/link'
-import React, { CSSProperties } from 'react'
+import React, { useMemo } from 'react'
 import { useRouter } from 'next/router'
+import { getButtonStyle } from '../utils'
 
 export const Navigator = () => {
   const route = useRouter()
+  const { searchClass, favoriteClass } = useMemo(() => getButtonStyle(route.pathname), [route.pathname])
+  return (
+    <NavigatorView searchClass={searchClass} favoriteClass={favoriteClass} />
+  )
+}
 
-  const { searchClass, favoriteClass } = getButtonStyle(route)
+export const NavigatorView = ({ searchClass, favoriteClass }) => {
   return (
     <div className='NavBar'>
       <div style={{ cursor: 'pointer' }}>
@@ -20,14 +26,3 @@ export const Navigator = () => {
   )
 }
 
-const getButtonStyle = (route) => {
-  const urls = route.pathname.split('/')
-  switch (urls[1]) {
-    case 'search':
-      return { searchClass: 'active', favoriteClass: 'nonActive' }
-    case 'favorite':
-      return { favoriteClass: 'active', searchClass: 'nonActive' }
-    default:
-      return {}
-  }
-}
