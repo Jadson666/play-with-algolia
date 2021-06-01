@@ -7,7 +7,7 @@
     "serve": "next build && next start",
     "build": "next build",
     "start": "next start",
-    "test": "jest -u"
+    "test": "jest"
   },
   "dependencies": {
     "algoliasearch": "^4.9.1",

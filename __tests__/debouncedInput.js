@@ -1,8 +1,7 @@
 import React from 'react'
 import { DebouncedInput } from '../src/components/DebouncedInput'
 import { mount } from 'enzyme';
-
-const delay = async (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+import { delay } from '../src/utils'
 
 describe('debouncedInput testing', () => {
   it('test debounced function work properly', async () => {

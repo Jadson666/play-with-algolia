@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test favorite search page is unchanged 1`] = `
+<div>
+  <div
+    className="important"
+  >
+    Try to add your Favorite :)
+  </div>
+</div>
+`;
+
+exports[`test search page is unchanged 1`] = `
+<div
+  style={
+    Object {
+      "padding": "0 30px",
+    }
+  }
+>
+  <div
+    className="inputContainer"
+  >
+    <input
+      className="searchInput"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <div>
+    <div
+      className="important"
+    >
+      No Result
+    </div>
+  </div>
+</div>
+`;

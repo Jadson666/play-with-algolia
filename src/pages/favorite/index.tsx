@@ -25,7 +25,7 @@ const FavoritePage = () => {
       fetch()
       callHappen.current = true
     }
-  }, [saved])
+  }, [saved.size])
 
   return (
     <ResultBoard

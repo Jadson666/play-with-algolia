@@ -19,3 +19,5 @@ export const getButtonStyle = (url: string): NavStyle => {
       return {}
   }
 }
+
+export const delay = async (ms) => new Promise((resolve) => setTimeout(resolve, ms))

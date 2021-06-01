@@ -14,7 +14,7 @@ export interface FavoriteStore {
   isLoading: boolean
 }
 
-const initialState = {
+export const initialState = {
   saved: new Set<string>(),
   data: [],
   isLoading: false

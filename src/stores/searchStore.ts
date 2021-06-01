@@ -10,7 +10,7 @@ export interface SearchStore {
   isLoading: boolean
 }
 
-const initialState = {
+export const initialState = {
   data: [],
   isLoading: false
 }
